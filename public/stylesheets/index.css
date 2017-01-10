@@ -1,0 +1,146 @@
+*{
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+}
+ul,li{
+	list-style: none;
+}
+html,
+body{
+  height: 100%;
+}
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color:#4D9108;
+  background: #8AF2A9;
+  text-align: center;
+}
+header,
+.left,
+.right{
+	position: absolute;
+}
+header{
+	left:10px;
+	top:10px;
+	right: 10px;
+	height: 150px;
+	border:solid #fff 1px;
+}
+header h1{
+	font-size: 40px;
+	height: 60px;
+	line-height: 60px;
+}
+#type{
+	width: 150px;
+	height: 25px;
+	line-height:25px;
+	padding:5px 0;
+	margin:0 auto 15px;
+	
+}
+#type li{
+	float: left;
+	width: 50%;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	background: #ccc;
+}
+#type li:first-child{
+	border-radius: 5px 0 0 5px;
+}
+#type li:last-child{
+	border-radius: 0 5px 5px 0;
+}
+#type li.selected{
+	background: pink;
+}
+
+.left{
+	left:10px;
+	top:170px;
+	bottom:10px;
+	width: 15%;
+	border:1px solid #fff;
+	overflow: auto;
+	
+}
+/*.left ul{
+	
+}*/
+.left ul li{
+	height: 30px;
+	line-height:30px;
+	cursor:pointer;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow: ellipsis;
+}
+.left ul li.selected{
+	color:#E084CF;
+}
+.right{
+	top:170px;
+	right:10px;
+	bottom:10px;
+	left:calc(15% + 20px);
+	left:-webkit-calc(15% + 20px);
+	border:1px solid #fff;
+}
+
+input[type='range']{
+	-webkit-appearance:none;
+	height: 8px;
+	background: #999;
+	border-radius: 10px;
+	outline:none;
+}
+
+input[type='range']::-webkit-slider-thumb{
+	-webkit-appearance:none;
+	height: 10px;
+	width: 10px;
+	background: #fff;
+	border-radius: 100%;
+}
+input[type='range']::-moz-range-track{
+	height: 8px;
+	background: #999;
+	border-radius: 10px;
+	border:none;
+}
+input[type='range']::-moz-range-thumb{
+	height: 10px;
+	width: 10px;
+	background: #fff;
+	border-radius: 100%;
+}
+
+@media screen and (max-width: 800px),screen and (max-height: 500px){
+	body{
+		font-size:12px;
+	}
+	header{
+		height: 80px;
+	}
+	header h1{
+		font-size: 24px;
+		height: 30px;
+		line-height: 30px;
+	}
+	header #type{
+		margin:0 auto 5px;
+	}
+	header #type li{
+		height: 18px;
+		line-height: 18px;
+		width: 50px;
+	}
+	.left,.right{
+		top:100px;
+	}
+}

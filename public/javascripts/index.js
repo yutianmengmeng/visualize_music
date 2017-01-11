@@ -4,7 +4,7 @@ function $(s){
 
 var types=$("#type li");
 var lis=$("#list li");
-var size=128;
+var size=64;
 var box=$("#box")[0];
 var height,width;
 var canvas=document.createElement("canvas");
@@ -39,12 +39,13 @@ function getDots(){
 	for(var i=0;i<size;i++){
 		var x=random(0,width);
 		var y=random(0,height);
-		var color="rgba("+random(0,255)+","+random(0,255)+","+random(0,255)+",0.2)";
+		var color="rgba("+random(0,255)+","+random(0,255)+","+random(0,255)+",0.5)";
 		Dots.push({
 			x:x,
 			y:y,
 			dx:random(1,4),
-			color:color
+			color:color,
+			cap:0
 		});
 	}
 }
@@ -67,15 +68,25 @@ window.onresize=resize;
 function draw(arr){
 	ctx.clearRect(0,0,width,height);
 	var w=width/size;
+	var cw=w*0.6;
+	var caph=cw;
 	ctx.fillStyle=line;
 	for(var i=0;i<size;i++){
-
+		var o=Dots[i];
 		if(draw.type=="column"){
 			var h=arr[i]/256*height;
-			ctx.fillRect(w*i,height-h,w*0.6,h);
+			ctx.fillRect(w*i,height-h,cw,h);
+			ctx.fillRect(w*i,height-(o.cap+caph) ,cw,caph);
+			o.cap--;
+			if(o.cap<0){
+				o.cap=0;
+			}
+			if(h>0 && o.cap<h+40){
+				o.cap=h+40 > height-caph ? height-caph : h+40;
+			}
 		}else if(draw.type=="dot"){
 			ctx.beginPath();
-			var o=Dots[i];
+			
 			var r=10+arr[i]/256*(height>width? width:height)/10;
 			ctx.arc(o.x,o.y,r,0,Math.PI*2,true);
 			// ctx.storkeStyle="purple";
